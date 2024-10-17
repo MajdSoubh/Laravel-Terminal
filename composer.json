@@ -1,0 +1,41 @@
+{
+    "name": "maso/wshell",
+    "description": "This package allows to interactively run shell commands directly from your browser",
+    "keywords": [
+        "maso",
+        "wshell"
+    ],
+    "homepage": "https://github.com/maso/wshell",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Majd Soubh",
+            "email": "majdsoubh53@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "laravel/framework": "^11",
+        "livewire/livewire": "^3"
+    },
+    "require-dev": {},
+    "autoload": {
+        "psr-4": {
+            "Maso\\WShell\\": "src"
+        }
+    },
+    "autoload-dev": {},
+    "scripts": {},
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Maso\\WShell\\Providers\\WShellServiceProvider"
+            ]
+        }
+    }
+}
