@@ -11,37 +11,15 @@ class WShellServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        /*
-         * Optional methods to load your package assets
-         */
-        // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'wshell');
-        // $this->loadViewsFrom(__DIR__.'/../resources/views', 'wshell');
-        // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        // $this->loadRoutesFrom(__DIR__.'/routes.php');
+        // Publish the package config file into Laravel config directoy.
+        $this->publishes([
+            __DIR__ . '/config/wshell.php' => config_path('wshell.php'),
+        ]);
 
-        if ($this->app->runningInConsole())
+        if (config('wshell.enabled'))
         {
-            // $this->publishes([
-            //     __DIR__ . '/../Config/config.php' => config_path('wshell.php'),
-            // ], 'config');
-
-            // Publishing the views.
-            /*$this->publishes([
-                __DIR__.'/../resources/views' => resource_path('views/vendor/wshell'),
-            ], 'views');*/
-
-            // Publishing assets.
-            /*$this->publishes([
-                __DIR__.'/../resources/assets' => public_path('vendor/wshell'),
-            ], 'assets');*/
-
-            // Publishing the translation files.
-            /*$this->publishes([
-                __DIR__.'/../resources/lang' => resource_path('lang/vendor/wshell'),
-            ], 'lang');*/
-
-            // Registering package commands.
-            // $this->commands([]);
+            $this->registerRoutes();
+            $this->registerViews();
         }
     }
 
@@ -50,7 +28,31 @@ class WShellServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__ . '/config/config.php', 'wshell');
+
+        $this->mergeConfig();
+    }
+
+    /**
+     * Register the package default config.
+     */
+    private function mergeConfig()
+    {
+        $this->mergeConfigFrom(__DIR__ . '/config/wshell.php', 'wshell');
+    }
+
+    /**
+     * Register the package routes.
+     */
+    protected function registerRoutes(): void
+    {
+        $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
+    }
+
+    /**
+     * Register the package views.
+     */
+    protected function registerViews(): void
+    {
+        $this->loadViewsFrom(__DIR__ . '/resources/views', 'wshell');
     }
 }
