@@ -1,6 +1,6 @@
 {
     "name": "maso/wshell",
-    "description": "This package allows to interactively run shell commands directly from your browser",
+    "description": "A Laravel package that enables developers to run shell commands interactively through the browser.",
     "keywords": [
         "maso",
         "wshell"
