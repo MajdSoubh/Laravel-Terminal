@@ -1,6 +1,6 @@
 <?php
 
-namespace Maso\WShell\Providers;
+namespace Maso\WShell;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -51,6 +51,6 @@ class WShellServiceProvider extends ServiceProvider
     public function register()
     {
         // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__ . '/../Config/config.php', 'wshell');
+        $this->mergeConfigFrom(__DIR__ . '/config/config.php', 'wshell');
     }
 }

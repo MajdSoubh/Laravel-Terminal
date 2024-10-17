@@ -34,7 +34,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Maso\\WShell\\Providers\\WShellServiceProvider"
+                "Maso\\WShell\\WShellServiceProvider"
             ]
         }
     }
