@@ -1,41 +1,40 @@
 {
-    "name": "maso/wshell",
-    "description": "A Laravel package that enables developers to run shell commands interactively through the browser.",
-    "keywords": [
-        "maso",
-        "wshell"
-    ],
-    "homepage": "https://github.com/maso/wshell",
-    "license": "MIT",
-    "type": "library",
-    "authors": [
-        {
-            "name": "Majd Soubh",
-            "email": "majdsoubh53@gmail.com",
-            "role": "Developer"
-        }
-    ],
-    "require": {
-        "php": "^7.4|^8.0",
-        "laravel/framework": "^11",
-        "livewire/livewire": "^3"
-    },
-    "require-dev": {},
-    "autoload": {
-        "psr-4": {
-            "Maso\\WShell\\": "src"
-        }
-    },
-    "autoload-dev": {},
-    "scripts": {},
-    "config": {
-        "sort-packages": true
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Maso\\WShell\\WShellServiceProvider"
-            ]
-        }
+  "name": "maso/wshell",
+  "description": "A Laravel package that enables developers to run shell commands interactively through the browser.",
+  "keywords": [
+    "maso",
+    "wshell"
+  ],
+  "homepage": "https://github.com/maso/wshell",
+  "license": "MIT",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Majd Soubh",
+      "email": "majdsoubh53@gmail.com",
+      "role": "Developer"
     }
+  ],
+  "require": {
+    "php": "^7.4|^8.0",
+    "laravel/framework": "^11"
+  },
+  "require-dev": {},
+  "autoload": {
+    "psr-4": {
+      "Maso\\WShell\\": "src"
+    }
+  },
+  "autoload-dev": {},
+  "scripts": {},
+  "config": {
+    "sort-packages": true
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Maso\\WShell\\WShellServiceProvider"
+      ]
+    }
+  }
 }
