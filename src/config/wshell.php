@@ -23,7 +23,29 @@ return [
 
     'route' => [
         'prefix' => 'wshell',
-        'middleware' => ['web'],
+        'as' => 'wshell.',
+        'middleware' => [],
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Route Configuration
+    |--------------------------------------------------------------------------
+    |
+    | Here you may customize the terminal interface.
+    |
+    */
+
+    'terminal' => [
+        'showInteractiveWarning' => true,
+        'cursorBlink' => true,
+        'prompt' => '$ ',
+        'header' => [
+            'Welcome to <span class="ansi-blue" style="color: #61afef; font-weight:bold">Laravel Shell</span><span class="ansi-bright-yellow" style="color: #f3f99d;"> v' . \Jakyeru\LaravelShell\LaravelShellServiceProvider::VERSION . '</span>',
+            'Running Laravel <span class="ansi-bright-yellow" style="color: #f3f99d;"> v' . Illuminate\Foundation\Application::VERSION . '</span> (PHP <span class="ansi-bright-yellow" style="color: #f3f99d;">v' . PHP_VERSION . '</span>)',
+
+        ]
+    ]
+
 
 ];
