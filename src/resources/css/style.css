@@ -1,0 +1,40 @@
+:root {
+  font-size: 15px;
+  line-height: 1.2;
+}
+body {
+  font-family: "Cascadia Code Regular", monospace;
+  background-color: #282a36;
+  color: #eff0eb;
+}
+
+.xterm {
+  margin-top: 10px;
+  margin-bottom: 5px;
+
+  position: relative;
+}
+.xterm.active .xterm-dash {
+  position: absolute;
+  margin-left: 0.2rem;
+  width: 0.4rem;
+  height: 1rem;
+  background-color: white;
+  animation: showHide 0.7s infinite;
+}
+@keyframes showHide {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+.xterm * {
+  white-space: pre;
+  display: inline-block;
+}
+.output {
+  white-space: pre;
+}
