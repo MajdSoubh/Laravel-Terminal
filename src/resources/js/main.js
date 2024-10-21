@@ -1,23 +1,10 @@
-let commands = [];
-let index = 0;
-function getPreviousCommand() {
-  if (index) {
-    return commands[--index];
-  }
-  if (commands.length) {
-    return commands[0];
-  }
-  return false;
-}
-function getNextCommand() {
-  if (index < commands.length - 1) {
-    return commands[++index];
-  }
-  if (commands.length) {
-    return commands[commands.length - 1];
-  }
-  return false;
-}
+let commands = [],
+  index = 0;
+
+const getPreviousCommand = () => commands[--index] || commands[0] || false;
+const getNextCommand = () =>
+  commands[++index] || commands[commands.length - 1] || false;
+
 // Function to parse ANSI escape sequences (including \u001b) to HTML with CSS
 function parseAnsiToCss(text) {
   // Map of ANSI escape codes to corresponding CSS classes
@@ -80,26 +67,23 @@ function parseAnsiToCss(text) {
   };
   let openTags = 0;
   // Replace ANSI codes with HTML tags
-  let result = text.replace(
-    /[\u001b]*[\x1b]*\[([0-9;]+)m/g,
-    (match, codes, s) => {
-      const codeList = codes.split(";");
+  let result = text.replace(/[\u001b]*[\x1b]*\[([0-9;]+)m/g, (match, codes) => {
+    const codeList = codes.split(";");
 
-      let html = "";
-      while (openTags--) {
-        html += "</span>";
-      }
-
-      // Iterate over each code and map it to the corresponding CSS
-      codeList.forEach((code) => {
-        html += ansiToCssMap[code] || "";
-      });
-
-      openTags = codeList.length;
-
-      return html;
+    let html = "";
+    while (openTags--) {
+      html += "</span>";
     }
-  );
+
+    // Iterate over each code and map it to the corresponding CSS
+    codeList.forEach((code) => {
+      html += ansiToCssMap[code] || "";
+    });
+
+    openTags = codeList.length;
+
+    return html;
+  });
 
   while (openTags--) {
     result += "</span>";
@@ -116,27 +100,19 @@ function fetchCurrentWorkingDirectory() {
 }
 
 function sendRequest(type, endPoint, payload = {}, header = {}) {
-  const csrfToken = document
-    .querySelector('meta[name="csrf"]')
-    .getAttribute("content");
-
-  let data = {};
-
-  if (type === "get" || type == "head") {
-    data = {};
-  } else {
-    data = { body: JSON.stringify(payload) };
-  }
-
-  return fetch(endPoint, {
+  const csrfToken = document.querySelector('meta[name="csrf"]').content;
+  const options = {
     method: type,
     headers: {
       "Content-Type": "application/json",
       "X-CSRF-TOKEN": csrfToken,
       ...header,
     },
-    ...data,
-  })
+  };
+
+  if (type !== "get" && type !== "head") options.body = JSON.stringify(payload);
+
+  return fetch(endPoint, options)
     .then((response) => {
       if (response.status === 200) {
         return response.json();
@@ -144,14 +120,10 @@ function sendRequest(type, endPoint, payload = {}, header = {}) {
         alert("This page has expired.\n would you like to reload the page?");
         window.location.reload();
       } else {
+        alert(`Unexpected input included`);
       }
     })
-    .then((response) => {
-      return response;
-    })
-    .catch((exception) => {
-      alert(`Unexpected input included`);
-    });
+    .catch(() => alert(`Unexpected error happen`));
 }
 
 async function insertNewInputElement(currentDirectory = "") {
@@ -198,14 +170,12 @@ function displayResult(content) {
   container.appendChild(outputElement);
   outputElement.scrollIntoView({ behavior: "smooth" });
 }
-function clear() {
-  fetchCurrentWorkingDirectory().then((directory) => {
-    insertNewInputElement(directory);
-    const xterms = document.querySelectorAll(".xterm:not(:last-child)");
-    const outputs = document.querySelectorAll(".output");
-    xterms.forEach((t) => t.remove());
-    outputs.forEach((o) => o.remove());
-  });
+async function clear() {
+  await insertNewInputElement();
+  const xterms = document.querySelectorAll(".xterm:not(:last-child)");
+  const outputs = document.querySelectorAll(".output");
+  xterms.forEach((t) => t.remove());
+  outputs.forEach((o) => o.remove());
 }
 function executeCommand(command) {
   if (command === "clear" || command === "clr") {
@@ -357,43 +327,44 @@ function getKeyPressed(event) {
 }
 
 function registerEvents() {
-  document.addEventListener("paste", function (event) {
-    event.preventDefault();
+  window.onload = function () {
+    document.addEventListener("paste", function (event) {
+      // Get current active input field
+      const terminal = getActiveInputElement();
 
-    // Get current active input field
-    const terminal = getActiveInputElement();
+      // Insert the clipboard data (text) to the current input field.
+      terminal.innerText += event.clipboardData.getData("text");
 
-    // Insert the clipboard data (text) to the current input field.
-    terminal.innerText += event.clipboardData.getData("text");
-
-    terminal.scrollIntoView({
-      behavior: "auto",
-      inline: "end",
+      terminal.scrollIntoView({
+        behavior: "auto",
+        inline: "end",
+      });
     });
-  });
-  document.addEventListener("keydown", (event) => {
-    // Check if Ctrl+V (Windows/Linux) or Cmd+V (macOS) is pressed for paste
-    if ((event.ctrlKey || event.metaKey) && event.key === "v") {
-      return;
-    }
-    event.preventDefault();
-    const terminal = getActiveInputElement();
-    const keyPressed = getKeyPressed(event);
-    switch (keyPressed) {
-      case "Enter":
-        executeCommand(terminal.innerText);
-        break;
-      case "Backspace":
-        terminal.innerText = terminal.innerText.slice(0, -1);
-        break;
-      default:
-        terminal.innerText += keyPressed;
-    }
-    terminal.scrollIntoView({
-      behavior: "auto",
-      inline: "end",
+    document.addEventListener("keydown", (event) => {
+      // Check if Ctrl+V (Windows/Linux) or Cmd+V (macOS) is pressed for paste
+      if ((event.ctrlKey || event.metaKey) && event.key === "v") return;
+      event.preventDefault();
+
+      const terminal = getActiveInputElement();
+      const keyPressed = getKeyPressed(event);
+
+      switch (keyPressed) {
+        case "Enter":
+          executeCommand(terminal.innerText);
+          break;
+        case "Backspace":
+          terminal.innerText = terminal.innerText.slice(0, -1);
+          break;
+        default:
+          terminal.innerText += keyPressed;
+      }
+
+      terminal.scrollIntoView({
+        behavior: "auto",
+        inline: "end",
+      });
     });
-  });
+  };
 }
 
 insertNewInputElement();
