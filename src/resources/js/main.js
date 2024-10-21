@@ -157,6 +157,7 @@ function insertNewInputElement(currentDirectory) {
     .getAttribute("content");
 
   const newTerminal = currentTerminal.cloneNode(true);
+
   newTerminal.children[0].innerText = currentDirectory + " " + prompt;
   newTerminal.children[1].innerText = "";
   newTerminal.classList.add("active");
@@ -251,6 +252,7 @@ function getKeyPressed(event) {
   if (ignoredKeys.includes(event.key)) {
     keyPressed = "";
   } else if (event.shiftKey) {
+    // Handle shifted special characters
     switch (event.code) {
       case "Digit1":
         keyPressed = "!";
@@ -313,7 +315,12 @@ function getKeyPressed(event) {
         keyPressed = "?";
         break;
       default:
-        keyPressed = "";
+        // Handle Shift + letter to produce uppercase letters
+        if (event.key.length === 1 && event.key.match(/[A-Z]/)) {
+          keyPressed = event.key.toUpperCase();
+        } else {
+          keyPressed = "";
+        }
     }
   } else if (event.key == "ArrowUp") {
     const terminal = getActiveInputElement();
