@@ -2,8 +2,8 @@
 
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Facades\Route;
-use Maso\WebShell\controllers\TerminalController;
-use Maso\WebShell\controllers\AssetController;
+use Maso\WebShell\http\Controllers\TerminalController;
+use Maso\WebShell\http\Controllers\AssetController;
 
 /*
 |--------------------------------------------------------------------------

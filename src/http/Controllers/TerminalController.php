@@ -1,10 +1,10 @@
 <?php
 
-namespace Maso\WebShell\controllers;
+namespace Maso\WebShell\http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Session;
+use Maso\WebShell\http\Requests\CommandRequest;
 
 class TerminalController extends Controller
 {
@@ -21,10 +21,10 @@ class TerminalController extends Controller
     /**
      * Handle and run the given command.
      *
-     * @param Request $request
+     * @param CommandRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function handleCommand(Request $request)
+    public function handleCommand(CommandRequest $request)
     {
         $command = $request->input('command');
 

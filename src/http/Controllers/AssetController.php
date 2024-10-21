@@ -1,6 +1,6 @@
 <?php
 
-namespace Maso\WebShell\controllers;
+namespace Maso\WebShell\http\Controllers;
 
 use Illuminate\Routing\Controller;
 
@@ -14,9 +14,9 @@ class AssetController extends Controller
     {
 
         if (
-            !file_exists($path = __DIR__ . "/../resources/css/{$asset}")
-            && !file_exists($path = __DIR__ . "/../resources/js/{$asset}")
-            && !file_exists($path = __DIR__ . "/../resources/fonts/{$asset}")
+            !file_exists($path = __DIR__ . "/../../resources/css/{$asset}")
+            && !file_exists($path = __DIR__ . "/../../resources/js/{$asset}")
+            && !file_exists($path = __DIR__ . "/../../resources/fonts/{$asset}")
         )
         {
             abort(404);
