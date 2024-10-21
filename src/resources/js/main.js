@@ -137,7 +137,13 @@ function sendRequest(type, endPoint, payload = {}, header = {}) {
     },
     ...data,
   })
-    .then((response) => response.json())
+    .then((response) => {
+      if (response.status === 419) {
+        alert("This page has expired.\n would you like to reload the page?");
+        window.location.reload();
+      }
+      return response.json();
+    })
     .then((response) => {
       return response;
     })
