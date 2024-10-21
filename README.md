@@ -7,7 +7,7 @@ The WShell package allows you to easily interact with shell directly from your b
 You can install the package via composer:
 
 ```shell
-composer require maso/wshell
+composer require maso/web-shell
 ```
 
 ## Usage
@@ -25,4 +25,4 @@ if we do not fix it within a short period of time please open a new issue descri
 
 ## Credits
 
--   [Majd Soubh](https://www.linkedin.com/in/majd-soubh/)
+- [Majd Soubh](https://www.linkedin.com/in/majd-soubh/)

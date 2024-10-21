@@ -2,10 +2,8 @@
 
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Facades\Route;
-use Maso\WShell\controllers\TerminalController;
-use Maso\WShell\controllers\AssetController;
-use Maso\WShell\http\Middleware\BindCSRFToken;
-use Illuminate\Foundation\Http\Middleware\ValidateCsrfToken;
+use Maso\WebShell\controllers\TerminalController;
+use Maso\WebShell\controllers\AssetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +13,7 @@ use Illuminate\Foundation\Http\Middleware\ValidateCsrfToken;
 |
 */
 
-Route::group(config('wshell.route'), function ()
+Route::group(config('web-shell.route'), function ()
 {
     Route::group(['middleware' => [StartSession::class]], function ()
     {

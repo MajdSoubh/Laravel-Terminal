@@ -1,6 +1,6 @@
 <?php
 
-namespace Maso\WShell\controllers;
+namespace Maso\WebShell\controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -11,7 +11,7 @@ class TerminalController extends Controller
 
     public function index()
     {
-        return view('wshell::terminal');
+        return view('web-shell::terminal');
     }
 
     /**

@@ -1,11 +1,11 @@
 {
-  "name": "maso/wshell",
-  "description": "A Laravel package that enables developers to run shell commands interactively through the browser.",
+  "name": "maso/web-shell",
+  "description": "A Laravel package that enables developers to run shell commands directly through the browser.",
   "keywords": [
     "maso",
-    "wshell"
+    "web-shell"
   ],
-  "homepage": "https://github.com/maso/wshell",
+  "homepage": "https://github.com/maso/web-shell",
   "license": "MIT",
   "type": "library",
   "authors": [
@@ -22,7 +22,7 @@
   "require-dev": {},
   "autoload": {
     "psr-4": {
-      "Maso\\WShell\\": "src"
+      "Maso\\WebShell\\": "src"
     }
   },
   "autoload-dev": {},
@@ -33,7 +33,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Maso\\WShell\\WShellServiceProvider"
+        "Maso\\WShell\\WebShellServiceProvider"
       ]
     }
   }

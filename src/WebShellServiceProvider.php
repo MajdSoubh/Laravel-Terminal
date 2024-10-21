@@ -1,10 +1,10 @@
 <?php
 
-namespace Maso\WShell;
+namespace Maso\WebShell;
 
 use Illuminate\Support\ServiceProvider;
 
-class WShellServiceProvider extends ServiceProvider
+class WebShellServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -13,10 +13,10 @@ class WShellServiceProvider extends ServiceProvider
     {
         // Publish the package config file into Laravel config directoy.
         $this->publishes([
-            __DIR__ . '/config/wshell.php' => config_path('wshell.php'),
+            __DIR__ . '/config/web-shell.php' => config_path('web-shell.php'),
         ]);
 
-        if (config('wshell.enabled'))
+        if (config('web-shell.enabled'))
         {
             $this->registerRoutes();
             $this->registerViews();
@@ -37,7 +37,7 @@ class WShellServiceProvider extends ServiceProvider
      */
     private function mergeConfig()
     {
-        $this->mergeConfigFrom(__DIR__ . '/config/wshell.php', 'wshell');
+        $this->mergeConfigFrom(__DIR__ . '/config/web-shell.php', 'web-shell');
     }
 
     /**
@@ -53,6 +53,6 @@ class WShellServiceProvider extends ServiceProvider
      */
     protected function registerViews(): void
     {
-        $this->loadViewsFrom(__DIR__ . '/resources/views', 'wshell');
+        $this->loadViewsFrom(__DIR__ . '/resources/views', 'web-shell');
     }
 }

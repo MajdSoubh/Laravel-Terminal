@@ -22,7 +22,7 @@ return [
     */
 
     'route' => [
-        'prefix' => 'wshell',
+        'prefix' => 'web-shell',
         'as' => 'wshell.',
         'middleware' => [],
     ],
