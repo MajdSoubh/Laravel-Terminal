@@ -26,7 +26,3 @@ Route::group(config('wshell.route'), function ()
         Route::post('/command', [TerminalController::class, 'runCommand'])->name('command');
     });
 });
-
-Route::group(config('wshell.route'), function ()
-{
-});
