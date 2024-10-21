@@ -13,6 +13,14 @@
     <title>@yield('title', 'Web Shell')</title>
     @stack('styles')
 </head>
+<style>
+    @font-face {
+        font-family: 'Cascadia Code Regular';
+        font-style: normal;
+        font-weight: normal;
+        src: local('Cascadia Code Regular'), url("{{ route(config('wshell.route.as') . 'asset.show', 'cascadia.woff') }}") format('woff');
+    }
+</style>
 
 <body>
 
