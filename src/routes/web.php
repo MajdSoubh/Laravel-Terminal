@@ -21,6 +21,6 @@ Route::group(config('web-shell.route'), function ()
         Route::get('/', [TerminalController::class, 'index']);
         Route::get('/directory', [TerminalController::class, 'getWorkingDirectory'])->name('directory.show');
         Route::get('assets/{asset}', [AssetController::class, 'getAsset'])->name('asset.show');
-        Route::post('/command', [TerminalController::class, 'runCommand'])->name('command');
+        Route::post('/command', [TerminalController::class, 'handleCommand'])->name('command');
     });
 });
