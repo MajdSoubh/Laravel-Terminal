@@ -243,6 +243,8 @@ function getKeyPressed(event) {
     "ScrollLock",
     "Control",
     "Alt",
+    "ArrowRight",
+    "ArrowLeft",
   ];
 
   if (ignoredKeys.includes(event.key)) {
@@ -348,6 +350,11 @@ function registerEvents() {
     });
   });
   document.addEventListener("keydown", (event) => {
+    // Check if Ctrl+V (Windows/Linux) or Cmd+V (macOS) is pressed for paste
+    if ((event.ctrlKey || event.metaKey) && event.key === "v") {
+      return;
+    }
+    event.preventDefault();
     const terminal = getActiveInputElement();
     const keyPressed = getKeyPressed(event);
     switch (keyPressed) {
