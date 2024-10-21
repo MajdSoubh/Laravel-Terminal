@@ -138,37 +138,43 @@ function sendRequest(type, endPoint, payload = {}, header = {}) {
     ...data,
   })
     .then((response) => {
-      if (response.status === 419) {
+      if (response.status === 200) {
+        return response.json();
+      } else if (response.status === 419) {
         alert("This page has expired.\n would you like to reload the page?");
         window.location.reload();
+      } else {
       }
-      return response.json();
     })
     .then((response) => {
       return response;
     })
     .catch((exception) => {
-      console.log(exception);
+      alert(`Unexpected input included`);
     });
 }
 
-function insertNewInputElement(currentDirectory) {
+async function insertNewInputElement(currentDirectory = "") {
   const terminals = document.querySelectorAll(".xterm");
   const currentTerminal = terminals[terminals.length - 1];
 
   currentTerminal.classList.remove("active");
-  // Get the prompt
+  // Get the prompt Symbol
   const prompt = document
     .querySelector('meta[name="prompt"]')
     .getAttribute("content");
 
+  // Clone the current terminal and clean it
   const newTerminal = currentTerminal.cloneNode(true);
-
+  // If current directory not provided fetch it.
+  !currentDirectory
+    ? (currentDirectory = await fetchCurrentWorkingDirectory())
+    : null;
   newTerminal.children[0].innerText = currentDirectory + " " + prompt;
   newTerminal.children[1].innerText = "";
   newTerminal.classList.add("active");
 
-  // Append created element to the end of the main container
+  // Append newly terminal to the end of the main container
   const container = document.getElementById("app");
   container.appendChild(newTerminal);
   newTerminal.scrollIntoView({ behavior: "smooth" });
@@ -204,6 +210,8 @@ function clear() {
 function executeCommand(command) {
   if (command === "clear" || command === "clr") {
     clear();
+  } else if (command.trim() === "") {
+    insertNewInputElement();
   } else {
     const apiEndPoint = document
       .querySelector('meta[name="command"]')
@@ -388,8 +396,6 @@ function registerEvents() {
   });
 }
 
-fetchCurrentWorkingDirectory().then((directory) =>
-  insertNewInputElement(directory)
-);
+insertNewInputElement();
 
 registerEvents();
