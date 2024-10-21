@@ -245,6 +245,7 @@ function getKeyPressed(event) {
     "Alt",
     "ArrowRight",
     "ArrowLeft",
+    "Meta",
   ];
 
   if (ignoredKeys.includes(event.key)) {
