@@ -1,6 +1,6 @@
 # Web Shell
 
-The Web Shell package allows you to easily interact with shell directly from your browser.
+Web Shell is a Laravel package that allows you to interact with a shell environment directly from your browser. This tool is designed for development purposes only and should not be used in production environments due to security risks associated with exposing shell access.
 
 ## Installation && Usage
 
@@ -22,7 +22,15 @@ Once installed and configured, navigate to /web-shell in your browser to access 
 
 ## Security Considerations
 
-Web Shell allows powerful access to your system, so it is highly recommended to secure the route using middleware such as authentication or IP whitelisting to prevent unauthorized access.
+This package is intended for development purposes only. Since it exposes shell access to your application, it is highly recommended to secure the route using middleware such as authentication or IP whitelisting to prevent unauthorized access. This can be done by modifying route array in the config/web-shell.php file :
+
+```shell
+'route' => [
+    'prefix' => 'web-shell',
+    'as' => 'web-shell.',
+    'middleware' => ['auth', 'can:access-web-shell'], // Example: Add your middleware here
+],
+```
 
 ## Contributing
 
