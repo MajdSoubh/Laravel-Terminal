@@ -8,6 +8,14 @@
             {!! $header !!}
             <br />
         @endforeach
+        @if (config('web-shell.terminal.showInteractiveWarning'))
+            <div style="margin-top:10px; overflow: hidden;"><span style="color: #ff5c57">Warning:</span><span>
+                    Running interactive
+                    commands </span><span style="color: #ff5c57">will hang your
+                    server</span><span> indefinitely until
+                    restarted.</span>
+            </div>
+        @endif
     </div>
     <div class="xterm">
         <span class="xterm-directory"></span>

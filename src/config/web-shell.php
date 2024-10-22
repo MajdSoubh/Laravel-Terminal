@@ -18,12 +18,13 @@ return [
     |--------------------------------------------------------------------------
     |
     | Here you may configure the route that will be used to access WShell.
+    | The 'as' attribute is essential for the package to function correctly.
     |
     */
 
     'route' => [
         'prefix' => 'web-shell',
-        'as' => 'wshell.',
+        'as' => 'web-shell.',
         'middleware' => [],
     ],
 
@@ -38,8 +39,7 @@ return [
 
     'terminal' => [
         'showInteractiveWarning' => true,
-        'cursorBlink' => true,
-        'prompt' => '$ ',
+        'prompt' => '$',
         'header' => [
             'Welcome to <span class="ansi-blue" style="color: #61afef; font-weight:bold">Laravel Shell</span><span class="ansi-bright-yellow" style="color: #f3f99d;"> v' . \Jakyeru\LaravelShell\LaravelShellServiceProvider::VERSION . '</span>',
             'Running Laravel <span class="ansi-bright-yellow" style="color: #f3f99d;"> v' . Illuminate\Foundation\Application::VERSION . '</span> (PHP <span class="ansi-bright-yellow" style="color: #f3f99d;">v' . PHP_VERSION . '</span>)',
