@@ -19,10 +19,7 @@ class WebShellServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Publish the package config file into Laravel config directoy.
-        $this->publishes([
-            __DIR__ . '/config/web-shell.php' => config_path('web-shell.php'),
-        ]);
+        $this->publishConfig();
 
         if (config('web-shell.enabled'))
         {
@@ -62,5 +59,15 @@ class WebShellServiceProvider extends ServiceProvider
     protected function registerViews(): void
     {
         $this->loadViewsFrom(__DIR__ . '/resources/views', 'web-shell');
+    }
+
+    /**
+     * Publish the package config.
+     */
+    protected function publishConfig(): void
+    {
+        $this->publishes([
+            __DIR__ . '/config/web-shell.php' => config_path('web-shell.php'),
+        ], 'config');
     }
 }
