@@ -10,7 +10,7 @@ return [
     |
     */
 
-    'enabled' => env('WSHELL_ENABLED', true),
+    'enabled' => env('WEB_SHELL_ENABLED', true),
 
     /*
     |--------------------------------------------------------------------------
