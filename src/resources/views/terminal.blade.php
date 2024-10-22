@@ -11,9 +11,8 @@
         @if (config('web-shell.terminal.showInteractiveWarning'))
             <div style="margin-top:10px; overflow: hidden;"><span style="color: #ff5c57">Warning:</span><span>
                     Running interactive
-                    commands </span><span style="color: #ff5c57">will hang your
-                    server</span><span> indefinitely until
-                    restarted.</span>
+                    commands </span>can freeze your server until it's restarted<span>
+                </span>
             </div>
         @endif
     </div>
