@@ -17,6 +17,7 @@ class CommandRequest extends FormRequest
     private array $interactiveCommands = [
         'php artisan tinker',
         'php artisan serve',
+        'php artisan serv',
         'php artisan queue:work',
         'php artisan queue:listen',
         'php artisan schedule:work',
