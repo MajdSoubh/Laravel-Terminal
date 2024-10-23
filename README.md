@@ -2,7 +2,7 @@
 
 Laravel Terminal is a package that allows you to interact with a shell environment directly from your browser. This tool is designed for development purposes only and should not be used in production environments due to security risks associated with exposing shell access.
 
-## Installation && Usage
+## Installation
 
 You can install the package via composer:
 
@@ -18,7 +18,9 @@ php artisan vendor:publish --provider="Maso\LaravelTerminal\LaravelTerminalServi
 
 ## Usage
 
-Once installed and configured, navigate to /laravel-terminal in your browser to access the terminal interface.
+Once installed and configured, navigate to /terminal in your browser to access the terminal interface.
+
+Warning : Executing interactive commands (e.g., commands that expect user input or running services) through the web interface will cause the server to hang. To resolve this, you will need to manually restart the server.
 
 ## Security Considerations
 
