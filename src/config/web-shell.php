@@ -41,9 +41,8 @@ return [
         'showInteractiveWarning' => true,
         'prompt' => '$',
         'header' => [
-            '<span class="ansi-blue" style="color: #61afef; font-weight:bold">Laravel Web Shell</span><span class="ansi-bright-yellow" style="color: #f3f99d;"> v' . \Maso\WebShell\WebShellServiceProvider::VERSION . '</span>',
-            'Running Laravel <span class="ansi-bright-yellow" style="color: #f3f99d;"> v' . Illuminate\Foundation\Application::VERSION . '</span> (PHP <span class="ansi-bright-yellow" style="color: #f3f99d;">v' . PHP_VERSION . '</span>)',
-
+            " <span>Application Environment: <span class='ansi-bright-green'>"  . config('app.env') . "</span></span>" .
+                "<br><span>Laravel " . Illuminate\Foundation\Application::VERSION . " (PHP v" . PHP_VERSION . "</span>)"
         ]
     ]
 

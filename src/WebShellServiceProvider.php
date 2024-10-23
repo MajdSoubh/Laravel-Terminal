@@ -8,13 +8,6 @@ class WebShellServiceProvider extends ServiceProvider
 {
 
     /**
-     * The current version of Web Shell.
-     *
-     * @var string
-     */
-    const VERSION = '1.0.0';
-
-    /**
      * Bootstrap the application services.
      */
     public function boot()
