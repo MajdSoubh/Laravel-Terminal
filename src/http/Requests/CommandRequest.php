@@ -1,6 +1,6 @@
 <?php
 
-namespace Maso\WebShell\http\Requests;
+namespace Maso\LaravelTerminal\http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;

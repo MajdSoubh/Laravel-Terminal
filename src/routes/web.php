@@ -2,8 +2,8 @@
 
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Facades\Route;
-use Maso\WebShell\http\Controllers\TerminalController;
-use Maso\WebShell\http\Controllers\AssetController;
+use Maso\LaravelTerminal\http\Controllers\TerminalController;
+use Maso\LaravelTerminal\http\Controllers\AssetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +13,7 @@ use Maso\WebShell\http\Controllers\AssetController;
 |
 */
 
-Route::group(config('web-shell.route'), function ()
+Route::group(config('laravel-terminal.route'), function ()
 {
     Route::group(['middleware' => [StartSession::class]], function ()
     {

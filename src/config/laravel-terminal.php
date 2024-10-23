@@ -3,28 +3,28 @@
 return [
     /*
     |--------------------------------------------------------------------------
-    | WShell Enabled
+    | Terminal Enabled
     |--------------------------------------------------------------------------
     |
-    | This option controls whether WShell is enabled or not.
+    | This option controls whether Terminal is enabled or not.
     |
     */
 
-    'enabled' => env('WEB_SHELL_ENABLED', true),
+    'enabled' => env('TERMINAL_ENABLED', true),
 
     /*
     |--------------------------------------------------------------------------
     | Route Configuration
     |--------------------------------------------------------------------------
     |
-    | Here you may configure the route that will be used to access WShell.
+    | Here you may configure the route that will be used to access Terminal.
     | The 'as' attribute is essential for the package to function correctly.
     |
     */
 
     'route' => [
-        'prefix' => 'web-shell',
-        'as' => 'web-shell.',
+        'prefix' => 'terminal',
+        'as' => 'terminal.',
         'middleware' => [],
     ],
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace Maso\WebShell\http\Controllers;
+namespace Maso\LaravelTerminal\http\Controllers;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Session;
-use Maso\WebShell\http\Requests\CommandRequest;
+use Maso\LaravelTerminal\http\Requests\CommandRequest;
 
 class TerminalController extends Controller
 {
@@ -15,7 +15,7 @@ class TerminalController extends Controller
      */
     public function index()
     {
-        return view('web-shell::terminal');
+        return view('laravel-terminal::terminal');
     }
 
     /**
@@ -53,7 +53,7 @@ class TerminalController extends Controller
      */
     private function currentDirectory(): string
     {
-        $currentDirectory = str_replace('\\', '/', Session::get('web-shell.directory', base_path()));
+        $currentDirectory = str_replace('\\', '/', Session::get('laravel-terminal.directory', base_path()));
         return $currentDirectory;
     }
 
@@ -79,7 +79,7 @@ class TerminalController extends Controller
             {
                 chdir($completeRequestedPath);
                 $currentDirectory = getcwd();
-                Session::put('web-shell.directory', str_replace('\\', '/', $currentDirectory));
+                Session::put('laravel-terminal.directory', str_replace('\\', '/', $currentDirectory));
                 return $currentDirectory;
             }
         }

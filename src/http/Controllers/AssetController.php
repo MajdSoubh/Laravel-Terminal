@@ -1,6 +1,6 @@
 <?php
 
-namespace Maso\WebShell\http\Controllers;
+namespace Maso\LaravelTerminal\http\Controllers;
 
 use Illuminate\Routing\Controller;
 

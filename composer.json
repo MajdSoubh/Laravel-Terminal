@@ -1,11 +1,11 @@
 {
-  "name": "maso/web-shell",
+  "name": "maso/laravel-terminal",
   "description": "A Laravel package that enables developers to run shell commands directly through the browser.",
   "keywords": [
     "maso",
-    "web-shell"
+    "laravel-terminal"
   ],
-  "homepage": "https://github.com/maso/web-shell",
+  "homepage": "https://github.com/maso/laravel-terminal",
   "license": "MIT",
   "type": "library",
   "authors": [
@@ -22,7 +22,7 @@
   "require-dev": {},
   "autoload": {
     "psr-4": {
-      "Maso\\WebShell\\": "src"
+      "Maso\\LaravelTerminal\\": "src"
     }
   },
   "autoload-dev": {},
@@ -33,7 +33,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Maso\\WebShell\\WebShellServiceProvider"
+        "Maso\\LaravelTerminal\\LaravelTerminalServiceProvider"
       ]
     }
   }

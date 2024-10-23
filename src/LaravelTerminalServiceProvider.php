@@ -1,10 +1,10 @@
 <?php
 
-namespace Maso\WebShell;
+namespace Maso\LaravelTerminal;
 
 use Illuminate\Support\ServiceProvider;
 
-class WebShellServiceProvider extends ServiceProvider
+class LaravelTerminalServiceProvider extends ServiceProvider
 {
 
     /**
@@ -14,7 +14,7 @@ class WebShellServiceProvider extends ServiceProvider
     {
         $this->publishConfig();
 
-        if (config('web-shell.enabled'))
+        if (config('laravel-terminal.enabled'))
         {
             $this->registerRoutes();
             $this->registerViews();
@@ -35,7 +35,7 @@ class WebShellServiceProvider extends ServiceProvider
      */
     private function mergeConfig()
     {
-        $this->mergeConfigFrom(__DIR__ . '/config/web-shell.php', 'web-shell');
+        $this->mergeConfigFrom(__DIR__ . '/config/laravel-terminal.php', 'laravel-terminal');
     }
 
     /**
@@ -51,7 +51,7 @@ class WebShellServiceProvider extends ServiceProvider
      */
     protected function registerViews(): void
     {
-        $this->loadViewsFrom(__DIR__ . '/resources/views', 'web-shell');
+        $this->loadViewsFrom(__DIR__ . '/resources/views', 'laravel-terminal');
     }
 
     /**
@@ -60,7 +60,7 @@ class WebShellServiceProvider extends ServiceProvider
     protected function publishConfig(): void
     {
         $this->publishes([
-            __DIR__ . '/config/web-shell.php' => config_path('web-shell.php'),
+            __DIR__ . '/config/laravel-terminal.php' => config_path('laravel-terminal.php'),
         ], 'config');
     }
 }
